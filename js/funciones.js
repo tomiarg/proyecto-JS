@@ -1,4 +1,4 @@
-debugger
+//debugger
 let queres = confirm("querés comprar cortinas?")
 if(queres){
     let tela = prompt("qué tela estás buscando: blackout, sunscreen ó ambas?")
