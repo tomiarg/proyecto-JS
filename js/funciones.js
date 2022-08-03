@@ -1,5 +1,4 @@
-//debugger
-let queres = confirm("querés comprar cortinas?")
+/*let queres = confirm("querés comprar cortinas?")
 if(queres){
     let tela = prompt("qué tela estás buscando: blackout, sunscreen ó ambas?")
     tela = tela.toLocaleLowerCase()
@@ -26,4 +25,36 @@ if(queres){
     alert("te invitamos a vistar la página")
 }
 
+*/
 
+class Product{
+    constructor(cloth, width, height, totalMts){
+        this.cloth = cloth
+        this.width = width
+        this.height = height
+        this.totalMts = totalMts
+    }
+    price(){
+        //debugger
+        if(this.cloth == "blackout"){
+            let priceBl = this.totalMts * 12
+            return priceBl
+        }else if (this.cloth == "sunscreen"){
+            let priceSun = this.totalMts * 11    
+            return priceSun
+        }else{
+            let priceBoth = this.totalMts * 20
+            return priceBoth
+        }
+    }
+}
+
+function carrito(){    
+    let cloth = prompt("qué tela desea comprar?: sunscreen, blackout o ambas")
+    cloth = cloth.toLocaleLowerCase()
+    let width = parseInt(prompt("ingrese el ancho de la cortina en cm"))
+    let height = parseInt(prompt("ingrese el alto de la cortina"))
+    let totalMts = width * height
+        buy.push(new Product(cloth, width, height, totalMts))
+        console.table(buy)
+}
