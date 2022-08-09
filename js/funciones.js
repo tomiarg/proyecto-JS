@@ -27,34 +27,39 @@ if(queres){
 
 */
 
-class Product{
-    constructor(cloth, width, height, totalMts){
+class Carro{
+    constructor(cloth, width, height, totalMts, price){
         this.cloth = cloth
         this.width = width
         this.height = height
         this.totalMts = totalMts
-    }
-    price(){
-        //debugger
-        if(this.cloth == "blackout"){
-            let priceBl = this.totalMts * 12
-            return priceBl
-        }else if (this.cloth == "sunscreen"){
-            let priceSun = this.totalMts * 11    
-            return priceSun
-        }else{
-            let priceBoth = this.totalMts * 20
-            return priceBoth
-        }
+        this.price = price
     }
 }
+debugger
+let cotizar = confirm("está buscando cotizar cortinas?")
+if (cotizar){
+    windows = parseInt(prompt("por favor, ingrese cuántas ventanas desea acortinar"))
+    if(windows != NaN){
+        for(let j = 0; j < windows; j++){
+            carrito()      
+        }
+    }
+}         
 
 function carrito(){    
-    let cloth = prompt("qué tela desea comprar?: sunscreen, blackout o ambas")
-    cloth = cloth.toLocaleLowerCase()
+    let which = parseInt(prompt(`elija un producto:\n 1) ${PRODUCTOS[0].cloth}\n 2) ${PRODUCTOS[1].cloth}\n 3) ${PRODUCTOS[2].cloth}\n 4) ${PRODUCTOS[3].cloth}\n 5) ${PRODUCTOS[4].cloth}\n 6) ${PRODUCTOS[5].cloth}\n` ))
+    l = which - 1
+    let cloth = PRODUCTOS[l].cloth
     let width = parseInt(prompt("ingrese el ancho de la cortina en cm"))
     let height = parseInt(prompt("ingrese el alto de la cortina"))
     let totalMts = width * height
-        buy.push(new Product(cloth, width, height, totalMts))
-        console.table(buy)
+    let precioTotal = PRODUCTOS[l].price * totalMts
+       TOBUY.push(new Carro(cloth, width, height, totalMts, precioTotal))
+       console.table(TOBUY)
 }
+
+for(let t = 0;  t < TOBUY.length; t++){
+    totalPrice = TOBUY[t].price + totalPrice
+}
+alert("deberas abonar $: " + totalPrice)
