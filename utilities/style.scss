@@ -3,6 +3,9 @@ nav{
     background-size: cover;
     background-repeat: no-repeat;
 }
+.opacity{
+    background-color: black !important;
+}
 body{
     width: 100%;
     margin:0;
@@ -33,7 +36,4 @@ ul{
 }
 .colorAmarillo{
     color: yellow;
-}
-.opacity{
-    background-color: black;
 }

@@ -29,14 +29,15 @@ tituloAmarillo.addEventListener("mousemove", () => {
     tituloAmarillo.className = "colorAmarillo"
 })
 
-
-
-window.onscroll = () => {
-    if (window.scrollY > 200) {
-        navScroll.className = "opacity";
-    } else {
-      navScroll.className = "";
-    }
-};
+window.onscroll = (() => {
+  debugger
+  const navScroll = document.querySelector("nav")
+  if (window.scrollY > 30) {
+    navScroll.className = "opacity"
+  } else {
+    navScroll.className = ""
+  }
+});
 
 cargarProductos()
+

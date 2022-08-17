@@ -9,7 +9,8 @@ let totalPrice = 0
 
 const subirProductos = document.querySelector("#productos")
 const tituloAmarillo = document.getElementById("titulo")
-const navScroll = document.querySelector("nav")
+
+
 
 class Product{
     constructor(order, cloth, price){

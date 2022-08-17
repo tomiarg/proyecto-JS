@@ -57,6 +57,10 @@ function carrito(){
        console.table(TOBUY)
 }
 
+
+
+
+
 for(let t = 0;  t < TOBUY.length; t++){
     totalPrice = TOBUY[t].price + totalPrice    
 }
