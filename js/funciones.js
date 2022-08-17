@@ -1,31 +1,3 @@
-/*let queres = confirm("querés comprar cortinas?")
-if(queres){
-    let tela = prompt("qué tela estás buscando: blackout, sunscreen ó ambas?")
-    tela = tela.toLocaleLowerCase()
-    if (tela == "blackout" || tela == "sunscreen" || tela =="ambas") {
-        let cantidad = parseInt(prompt("cuántas cortinas pretende comprar?"))
-        if (cantidad != NaN){
-            for(let i = 0; i < cantidad; i++) {
-                let ancho = parseInt(prompt( "de la"+" "+ (i + 1)+ "°, " + "ingrese el ancho en cm"))
-                let largo = parseInt(prompt("de la"+" "+ (i + 1)+ "°, " + "ingrese el ancho en cm"))
-                function total(width, long) {
-                    const longitud = width * long 
-                    let precio = longitud * 350
-                    alert("el precio de la "+ (i+1) + "°, " + "es: $ " + " " + precio)                             
-                }
-                total(ancho, largo)
-            } 
-        }else {
-            alert("debe ingresar un número")
-        }        
-    }else{
-        alert("ha ingresado un valor incorrecto!")
-    }
-}else{
-    alert("te invitamos a vistar la página")
-}
-
-*/
 
 class Carro{
     constructor(cloth, width, height, totalMts, price){
@@ -36,7 +8,7 @@ class Carro{
         this.price = price
     }
 }
-debugger
+//debugger
 let cotizar = confirm("está buscando cotizar cortinas?")
 if (cotizar){
     windows = parseInt(prompt("por favor, ingrese cuántas ventanas desea acortinar"))
@@ -46,13 +18,39 @@ if (cotizar){
         }
     }
 }         
+function elija(){
+    
+    let cual = 0
+    do{
+    cual = parseInt(prompt(`elija un producto:\n 1) ${PRODUCTOS[0].cloth}\n 2) ${PRODUCTOS[1].cloth}\n 3) ${PRODUCTOS[2].cloth}\n 4) ${PRODUCTOS[3].cloth}\n 5) ${PRODUCTOS[4].cloth}\n 6) ${PRODUCTOS[5].cloth}\n` )); } while( cual != 1 && cual != 2 && cual != 3 && cual != 4 && cual != 5 && cual != 6);
+    return cual;
+    
+}
+function elijaAncho(){
+   
+    let ancho = 0
+    do{
+       ancho = parseInt(prompt("ingrese el ancho de la cortina en cm"));
+    }while( isNaN(ancho));
+    return ancho;
+}
+function elijaAlto (){
+    //debugger
+    let alto = 0
+    do{
+        alto = parseInt(prompt("ingrese el alto de la cortina"));
+
+    }while(isNaN(alto));
+    return alto;
+
+}
 
 function carrito(){    
-    let which = parseInt(prompt(`elija un producto:\n 1) ${PRODUCTOS[0].cloth}\n 2) ${PRODUCTOS[1].cloth}\n 3) ${PRODUCTOS[2].cloth}\n 4) ${PRODUCTOS[3].cloth}\n 5) ${PRODUCTOS[4].cloth}\n 6) ${PRODUCTOS[5].cloth}\n` ))
+    let which = elija()
     l = which - 1
     let cloth = PRODUCTOS[l].cloth
-    let width = parseInt(prompt("ingrese el ancho de la cortina en cm"))
-    let height = parseInt(prompt("ingrese el alto de la cortina"))
+    let width = elijaAncho()
+    let height = elijaAlto()
     let totalMts = width * height
     let precioTotal = PRODUCTOS[l].price * totalMts
        TOBUY.push(new Carro(cloth, width, height, totalMts, precioTotal))
@@ -60,6 +58,9 @@ function carrito(){
 }
 
 for(let t = 0;  t < TOBUY.length; t++){
-    totalPrice = TOBUY[t].price + totalPrice
+    totalPrice = TOBUY[t].price + totalPrice    
 }
 alert("deberas abonar $: " + totalPrice)
+
+
+
