@@ -1,14 +1,4 @@
-/*let titulo = document.getElementById("titulo")
 
-console.log(titulo.innerText)
-
-titulo.innerText = "Hola Wacho"
-
-console.log (titulo.innerText)
-
-let container = document.getElementById("contenedor")
-
-container.innerHTML = '<ul><li><a href="index.html" class="dropdown-item" type="button">inicio</a></li><li><a href="quienes.html" class="dropdown-item" type="button">quiénes somos</a></li><li><a href="productos.html" class="dropdown-item" type="button">produtos</a></li><li><a href="contacto.html"class="dropdown-item" type="button">contacto</a></li><li class="dropdown">'*/
 
 
 for(let t = 0;  t < TOBUY.length; t++){
@@ -17,9 +7,27 @@ for(let t = 0;  t < TOBUY.length; t++){
     document.body.appendChild(carr);
 }
 
+
+
 function cargarProductos(){
   for(let u=0; u < PRODUCTOS.length; u ++){
-    subirProductos.innerHTML +=   `<li>${PRODUCTOS[u].cloth}</li> ` 
+      
+    subirProductos.innerHTML +=   `
+    <div class="card" style="width: 18rem;">
+    <img src="${PRODUCTOS[u].image}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${PRODUCTOS[u].cloth}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${PRODUCTOS[u].compotition}</li>
+      <li class="list-group-item">$ ${PRODUCTOS[u].price} por m2</li>
+    </ul>
+    <div class="card-body">
+      <input class = long type ="number" value = "ingrese el ancho"></a>
+      <input class = height type ="number" value = "ingrese el largo"></a>
+      <input type="submit" value= "agregar al carrito"></a>
+    </div>
+  </div> ` 
       
   }
 }
@@ -30,14 +38,16 @@ tituloAmarillo.addEventListener("mousemove", () => {
 })
 
 window.onscroll = (() => {
-  debugger
   const navScroll = document.querySelector("nav")
   if (window.scrollY > 30) {
-    navScroll.className = "opacity"
+    navScroll.className = "navbar navbar-dark bg-dark  fixed-top opacity"
   } else {
-    navScroll.className = ""
+    navScroll.className = "navbar navbar-dark bg-dark fixed-top"
   }
 });
 
 cargarProductos()
+
+
+
 
