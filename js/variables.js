@@ -11,6 +11,12 @@ let url = 0
 const subirProductos = document.querySelector("#productos")
 const tituloAmarillo = document.getElementById("titulo")
 const imgSubir = document.querySelector(".card-img-top")
+const btnCotizar = document.querySelector("#cotizar")
+const cargarCortinas = document.querySelector("#cargarCortinas")
+let cuantasCortinas = 0 
+let cortinasCantidad = 0
+let enviarCantidad = 0
+
 
 
 

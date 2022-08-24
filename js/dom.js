@@ -21,16 +21,19 @@ function cargarProductos(){
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${PRODUCTOS[u].compotition}</li>
       <li class="list-group-item">$ ${PRODUCTOS[u].price} por m2</li>
+      <li class="list-group-item">COLORES</li>
+      <li class="list-group-item">Blanco - Gris - Negro</li>
     </ul>
-    <div class="card-body">
-      <input class = long type ="number" value = "ingrese el ancho"></a>
-      <input class = height type ="number" value = "ingrese el largo"></a>
-      <input type="submit" value= "agregar al carrito"></a>
-    </div>
   </div> ` 
       
   }
 }
+function cargarMedidas(){
+  cargarCortinas.innerHTML += `<input class = largo type ="number" placeholder = "ingrese el ancho"></a>
+  <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
+  <input type="submit" value= "agregar al carrito"></a>`
+}
+
 
 
 tituloAmarillo.addEventListener("mousemove", () => {
@@ -46,7 +49,34 @@ window.onscroll = (() => {
   }
 });
 
-cargarProductos()
+ cargarProductos()
+
+
+
+btnCotizar.addEventListener("click" , function addSelect(){
+  let add = document.querySelector("#agregarInputs")
+  add.innerHTML = add.innerHTML + `<input class = "cuantas" type ="number" placeholder = "cuántas cortinas desea comprar?" value = ""></a>
+  <input class="enviarCantidad" type="submit" value= "agregar al carrito"></a>`
+
+})
+
+//HACER UN BOOLEAN PARA VER SI EL CLICK ES TRUE QUE PASE TODO:
+function nvoCodigo(){
+  cuantasCortinas = document.querySelector(".cuantas")
+  cortinasCantidad = parseInt(cuantasCortinas.value) 
+  if(cortinasCantidad != NaN || cortinasCantidad != Null){
+    for(let j = 0; j < cortinasCantidad; j++){
+      cargarMedidas() 
+      enviarCantidad = document.querySelector("enviarCantidad")    
+    }
+  }  
+
+}
+nvoCodigo()
+
+
+
+
 
 
 
