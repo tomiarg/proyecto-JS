@@ -13,9 +13,6 @@ const tituloAmarillo = document.getElementById("titulo")
 const imgSubir = document.querySelector(".card-img-top")
 const btnCotizar = document.querySelector("#cotizar")
 const cargarCortinas = document.querySelector("#cargarCortinas")
-let cuantasCortinas = 0 
-let cortinasCantidad = 0
-let enviarCantidad = 0
 
 
 
@@ -28,11 +25,20 @@ class Product{
         this.image = image
         this.price = price
     }
+    
 }
 
-
+function push(){
 PRODUCTOS.push(new Product("A", "BLACKOUT", "Patrón: Plane weave x peso: 5,50 +/- 5%(gr/m2)", "./img/blackout.jpg", 20))
 PRODUCTOS.push(new Product("D", "SUNSCREEN 5%","Patrón: Tatting", "./img/sunscreen.jpg",  27))
 PRODUCTOS.push(new Product("E", "BANDAS VERTICALES", "Blackout & Sunscreen 5%", "./img/bandaVertical.jpg", 40))
-console.table(PRODUCTOS)
+localStorage.setItem("productos", JSON.stringify(PRODUCTOS))
+}
+push()
 
+function recuperarLs(){
+    if(localStorage.productos){
+        const prodLs = JSON.parse(localStorage.getItem("productos"))
+        console.table(prodLs)
+    }
+}
