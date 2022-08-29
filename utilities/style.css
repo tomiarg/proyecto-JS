@@ -12,13 +12,17 @@ nav {
 body {
   width: 100%;
   margin: 0;
+}
+
+main {
+  padding-top: 100px !important;
+  height: 100vh;
   background-image: url(../img/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 h1 {
-  margin-top: 100px !important;
   color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,10 +30,6 @@ h1 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-main {
-  height: 100vh;
 }
 
 footer {
@@ -56,5 +56,22 @@ h3 {
 
 .colorAmarillo {
   color: yellow;
+}
+
+#detalleProducto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 100px;
+}
+
+.compra {
+  background-color: #96d9f8;
 }
 /*# sourceMappingURL=style.css.map */
