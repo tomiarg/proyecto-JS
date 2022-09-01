@@ -39,10 +39,31 @@ function cargarProductos(){
       <li class="list-group-item">Blanco - Gris - Negro</li>
     </ul>
     <div class="card-body">
-      <a href="./pages/productos.html"" class="card-link click${PRODUCTOS[u].order}">Detalle de Producto</a>
-  </div>
-  </div> `      
-  }; detallePagg()
+      <a href="./pages/productos.html"" class="card-link click${PRODUCTOS[u].order}" id = "prodCanvas">Detalle de Producto</a> </div> <button class="btn btn-primary Btn${PRODUCTOS[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      detalle de producto
+    </button><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+      </div>
+      <div class="dropdown mt-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+  </div></div> `    
+    
+  }; detalleProd()  
 }
 
 
@@ -58,6 +79,7 @@ function elegirTela(){
   <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
   <input type="submit" value= "agregar al carrito"></a></div>
   `
+  
 }
 
  cargarProductos()
@@ -89,14 +111,14 @@ btnCotizar.addEventListener("click" , function addSelect(){
 
 
 //función para completar la otra url
-
+//pensar cómo hacer para que al tocar un click, pueda usar la misma función y mostrar diferentes cosas
 
 
 function detallePagg(){
   const clickDetalleA = document.querySelector(".clickA")
   const clickDetalleB = document.querySelector(".clickB")
   const clickDetalleC = document.querySelector(".clickC")
-  clickDetalleA.addEventListener("click", function clickeAr(){     
+  clickDetalleA.addEventListener("click", function clickeAr(){   
     clickeA++
     sessionStorage.setItem("detalle", JSON.stringify([clickeA, clickeB, clickeC]))
   })
@@ -113,10 +135,31 @@ function detallePagg(){
 
 
 
+function sa (){
+  Swal.fire('recodá medir de marco a marco agregando 5 cm de cada lado!')
+} 
 
 
-//detallePaggA()
 
+
+function detalleProd(){  
+  let i = 0
+  const btnProda = document.querySelector(".BtnA")
+  const btnProdb = document.querySelector(".BtnB")
+  const btnProdc = document.querySelector(".BtnC") 
+  btnProda.addEventListener("click", ()=>{
+    i = 0
+    prodCanvas (i)
+  })
+  btnProdb.addEventListener("click", ()=>{
+    i = 1
+    prodCanvas (i)
+  })
+  btnProdc.addEventListener("click", ()=>{
+    i = 2
+    prodCanvas (i)
+  })
+}
 
 
 
