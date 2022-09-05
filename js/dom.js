@@ -67,7 +67,6 @@ function elegirTela(){
   <option class = "telaBlackout" value="value1">${PRODUCTOS[0].cloth}</option>
   <option class = "telaSunscreen" value="value2">${PRODUCTOS[1].cloth}</option>
   <option class = "telaBanda" value="value3">${PRODUCTOS[2].cloth}</option>
-  <input class="btnHecho" type="submit" value= "hecho"></a>
   </select><input class = largo type ="number" placeholder = "ingrese el ancho"></a>
   <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
   <input type="submit" value= "agregar al carrito"></a></div>
@@ -95,16 +94,15 @@ function elegirTela(){
 //este Evento escucha el click sobre "cotizar" y crea un input para poner cantidad de cortinas
 btnCotizar.addEventListener("click" , function addSelect(){
   let add = document.querySelector("#agregarInputs")
+  btnCotizar.setAttribute('disabled', '')
   add.innerHTML = add.innerHTML + `<div> <select name="select" class="select">
   <option class = "telaNo" value="value0" selected>...</option>
   <option class = "telaBlackout">${PRODUCTOS[0].cloth}</option>
   <option class = "telaSunscreen">${PRODUCTOS[1].cloth}</option>
   <option class = "telaBanda">${PRODUCTOS[2].cloth}</option>
-  <input class="btnHecho" type="submit" value= "hecho"></a>
   </select><input class = largo type ="number" placeholder = "ingrese el ancho"></a>
   <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
   <input class="enviarCantidad" type="submit" value= "agregar al carrito"></a></div>
-  <input class="total" type ="number" placeholder=0></a>
   `
   detalleCompra()
 })
@@ -193,6 +191,18 @@ function prodCanvas(i){
    
 }
 
+const CARRITO = []
+
+class CarritoClass{
+  constructor(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal){
+      this.telaSelect = telaSelect
+      this.mtLargo = mtLargo
+      this.mtancho = mtancho
+      this.mtsCuadrados = mtsCuadrados
+      this.inputTotal = inputTotal
+  }
+}
+
 function detalleCompra(){  
    const enviarCantidad = document.querySelector(".enviarCantidad")
    enviarCantidad.addEventListener("click", (e) =>{
@@ -202,17 +212,29 @@ function detalleCompra(){
     let telaSelect = document.querySelector("select.select").value
     let mtLargo = document.querySelector("input.largo").value
     let mtancho = document.querySelector("input.ancho").value
-    let inputTotal = document.querySelector("input.total").value
+    let inputTotal = 0
     let mtsCuadrados = mtancho * mtLargo
     if(telaSelect == `${PRODUCTOS[0].cloth}`){
       sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 100px></span></h3>`
-      inputTotal.value = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)  
+      inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
+      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))  
     } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
       sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 100px></span></h3>`
-      inputTotal += mtsCuadrados * PRODUCTOS[1].price
+      inputTotal = mtsCuadrados * PRODUCTOS[1].price
+      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
     }else{
       sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 100px></span></h3>`
-      inputTotal += mtsCuadrados * PRODUCTOS[2].price
+      inputTotal = mtsCuadrados * PRODUCTOS[2].price
+      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
     }
+    console.table(CARRITO)
+    document.querySelector("select.select").value = "value0"
+    document.querySelector("input.largo").value = ""
+    document.querySelector("input.ancho").value = ""
+
   });
+}
+
+for(let t = 0;  t < CARRITO.length; t++){
+  precioPagar = CARRITO[t].price + precioPagar    
 }

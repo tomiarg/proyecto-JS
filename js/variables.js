@@ -6,6 +6,7 @@ let tela = 0
 let l = 0
 let ancho = 0
 let totalPrice = 0
+let precioPagar = 0
 let url = 0
 let clickeA = 0
 let clickeB = 0

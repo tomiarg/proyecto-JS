@@ -57,6 +57,19 @@ h3{
     margin-top: 100px;
 
 }
-.compra, #sumarCompras{
-    background-color: #96d9f8;
+.compra{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
 }
+#sumarCompras{
+    background-color: #96d9f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+} 
+
+
+ 
