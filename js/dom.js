@@ -41,29 +41,22 @@ function cargarProductos(){
     <div class="card-body">
       <a href="./pages/productos.html"" class="card-link click${PRODUCTOS[u].order}" id = "prodCanvas">Detalle de Producto</a> </div> <button class="btn btn-primary Btn${PRODUCTOS[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
       detalle de producto
-    </button><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    </button><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" style="
+    width: 100%;
+" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel" >Offcanvas</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    <div class="offcanvas-body bodyCanvas">
+      <div id = "canvasId">
+  
       </div>
-      <div class="dropdown mt-3">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
+      
     </div>
   </div></div> `    
     
-  }; detalleProd()  
+  };
 }
 
 
@@ -86,11 +79,10 @@ function elegirTela(){
 
 // esta función hace que escuche la cantidad que quiere comprar y crea 1 input por C/cortina
  function nvoCodigo(){  
-  const cuantasCortinas = document.querySelector(".cuantas")
   const enviarCantidad = document.querySelector(".enviarCantidad")
   enviarCantidad.addEventListener("click", (e) =>{
     e.preventDefault()
-    const cortinasCantidad = parseInt(cuantasCortinas.value)
+    const cortinasCantidad = parseInt(enviarCantidad.value)
     if(cortinasCantidad!= NaN || cortinasCantidad != Null){
       for(let j = 0; j < cortinasCantidad; j++){
         elegirTela()    
@@ -103,9 +95,18 @@ function elegirTela(){
 //este Evento escucha el click sobre "cotizar" y crea un input para poner cantidad de cortinas
 btnCotizar.addEventListener("click" , function addSelect(){
   let add = document.querySelector("#agregarInputs")
-  add.innerHTML = add.innerHTML + `<input class = "cuantas" type ="number" placeholder = "cuántas cortinas desea comprar?" value = ""></a>
-  <input class="enviarCantidad" type="submit" value= "agregar al carrito"></a>`
-  nvoCodigo()
+  add.innerHTML = add.innerHTML + `<div> <select name="select" class="select">
+  <option class = "telaNo" value="value0" selected>...</option>
+  <option class = "telaBlackout">${PRODUCTOS[0].cloth}</option>
+  <option class = "telaSunscreen">${PRODUCTOS[1].cloth}</option>
+  <option class = "telaBanda">${PRODUCTOS[2].cloth}</option>
+  <input class="btnHecho" type="submit" value= "hecho"></a>
+  </select><input class = largo type ="number" placeholder = "ingrese el ancho"></a>
+  <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
+  <input class="enviarCantidad" type="submit" value= "agregar al carrito"></a></div>
+  <input class="total" type ="number" placeholder=0></a>
+  `
+  detalleCompra()
 })
 
 
@@ -134,36 +135,84 @@ function detallePagg(){
 }
 
 
-
+//sweet alert.
 function sa (){
-  Swal.fire('recodá medir de marco a marco agregando 5 cm de cada lado!')
+  Swal.fire('cotización realizada con éxito!')
 } 
 
 
 
 
-function detalleProd(){  
-  let i = 0
-  const btnProda = document.querySelector(".BtnA")
-  const btnProdb = document.querySelector(".BtnB")
-  const btnProdc = document.querySelector(".BtnC") 
-  btnProda.addEventListener("click", ()=>{
+//funciones para ver en Canvass el detalle del prod que se clickee. 
+const btnProda = document.querySelector(".BtnA")
+
+btnProda.addEventListener("click", (e)=>{
+  
+  e.preventDefault()
     i = 0
     prodCanvas (i)
   })
-  btnProdb.addEventListener("click", ()=>{
+  const btnProdb = document.querySelector(".BtnB")
+  btnProdb.addEventListener("click", (e)=>{
+    e.preventDefault()
     i = 1
     prodCanvas (i)
   })
-  btnProdc.addEventListener("click", ()=>{
+  const btnProdc = document.querySelector(".BtnC")
+  btnProdc.addEventListener("click", (e)=>{
+    e.preventDefault()
     i = 2
     prodCanvas (i)
   })
+
+
+
+
+function prodCanvas(i){  
+  
+  let canvasId = document.querySelector("#canvasId")
+    canvasId.innerHTML = `  
+  <div>
+  <div class="row g-0">
+  <div class="col-md-4">
+    <img src="${PRODUCTOS[i].image}" class="img-fluid rounded-start" alt="...">
+  </div>
+ <div class="col-md-8">
+   <div class="card-body">
+      <h5 class="card-title">${PRODUCTOS[i].cloth}</h5>
+      <p class="card-text">${PRODUCTOS[i].compotition}.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+     </div>
+   </div>
+   </div>
+   </div>
+     </div>
+    <div class="dropdown mt-3">
+     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+   </div>`
+   
 }
 
-
-
-
-
-
-
+function detalleCompra(){  
+   const enviarCantidad = document.querySelector(".enviarCantidad")
+   enviarCantidad.addEventListener("click", (e) =>{
+    e.preventDefault()
+    sa ()
+    const sumarCompras = document.querySelector("#sumarCompras")
+    let telaSelect = document.querySelector("select.select").value
+    let mtLargo = document.querySelector("input.largo").value
+    let mtancho = document.querySelector("input.ancho").value
+    let inputTotal = document.querySelector("input.total").value
+    let mtsCuadrados = mtancho * mtLargo
+    if(telaSelect == `${PRODUCTOS[0].cloth}`){
+      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 100px></span></h3>`
+      inputTotal.value = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)  
+    } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
+      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 100px></span></h3>`
+      inputTotal += mtsCuadrados * PRODUCTOS[1].price
+    }else{
+      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 100px></span></h3>`
+      inputTotal += mtsCuadrados * PRODUCTOS[2].price
+    }
+  });
+}
