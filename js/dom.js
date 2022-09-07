@@ -39,7 +39,7 @@ function cargarProductos(){
       <li class="list-group-item">Blanco - Gris - Negro</li>
     </ul>
     <div class="card-body">
-      <a href="./pages/productos.html"" class="card-link click${PRODUCTOS[u].order}" id = "prodCanvas">Detalle de Producto</a> </div> <button class="btn btn-primary Btn${PRODUCTOS[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+     <button class="btn btn-primary Btn${PRODUCTOS[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
       detalle de producto
     </button><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" style="
     width: 100%;
@@ -191,6 +191,7 @@ function prodCanvas(i){
    
 }
 
+//constante Para el carrito
 const CARRITO = []
 
 class CarritoClass{
@@ -203,6 +204,7 @@ class CarritoClass{
   }
 }
 
+//función para leer los datos ingresados y devolver el total y demás.
 function detalleCompra(){  
    const enviarCantidad = document.querySelector(".enviarCantidad")
    enviarCantidad.addEventListener("click", (e) =>{
@@ -214,27 +216,53 @@ function detalleCompra(){
     let mtancho = document.querySelector("input.ancho").value
     let inputTotal = 0
     let mtsCuadrados = mtancho * mtLargo
-    if(telaSelect == `${PRODUCTOS[0].cloth}`){
-      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 100px></span></h3>`
-      inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
-      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))  
-    } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
-      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 100px></span></h3>`
-      inputTotal = mtsCuadrados * PRODUCTOS[1].price
-      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+    if(telaSelect != "..." &&  mtLargo != "" && mtancho!=""){
+      if(telaSelect == `${PRODUCTOS[0].cloth}`){
+        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 100px></span></h3>`
+        inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))  
+      } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
+        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 100px></span></h3>`
+        inputTotal = mtsCuadrados * PRODUCTOS[1].price
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+      }else{
+        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 100px></span></h3>`
+        inputTotal = mtsCuadrados * PRODUCTOS[2].price
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+      }
+      console.table(CARRITO)
+      localStorage.setItem("carrito", JSON.stringify(CARRITO))
+      document.querySelector("select.select").value = "value0"
+      document.querySelector("input.largo").value = ""
+      document.querySelector("input.ancho").value = ""
     }else{
-      sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 100px></span></h3>`
-      inputTotal = mtsCuadrados * PRODUCTOS[2].price
-      CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'recuerda ingresar todos los datos',
+      })
     }
-    console.table(CARRITO)
-    document.querySelector("select.select").value = "value0"
-    document.querySelector("input.largo").value = ""
-    document.querySelector("input.ancho").value = ""
-
   });
 }
 
 for(let t = 0;  t < CARRITO.length; t++){
-  precioPagar = CARRITO[t].price + precioPagar    
+  precioPagar = CARRITO[t].price + precioPagar   
 }
+
+function recuperarLscarrito(){
+  if(localStorage.carrito){
+      const CARRITOLS = JSON.parse(localStorage.getItem("carrito"))
+      console.table(CARRITOLS)     
+  } 
+}
+
+function sumar(){
+  const CARRITOLS = JSON.parse(localStorage.getItem("carrito"))
+  let totalPagar = 0
+  for(let t = 0;  t < CARRITOLS.length; t++){
+    totalPagar = CARRITOLS[t].inputTotal + totalPagar
+    console.log(totalPagar)  
+  }
+  
+}
+recuperarLscarrito()
