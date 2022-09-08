@@ -4,6 +4,14 @@ nav {
   background-repeat: no-repeat;
 }
 
+.coche {
+  display: none;
+}
+
+.cocheLleno {
+  display: block;
+}
+
 .opacity {
   background-color: white !important;
   background-image: none;
@@ -24,12 +32,28 @@ main {
 
 h1 {
   color: white;
+  width: 400px;
+  padding: 12px;
+  font-size: 82px;
+  font-weight: bolder;
+  mix-blend-mode: normal;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+h1 {
+  -webkit-transition: all 4s;
+  transition: all 4s;
+}
+
+h1:hover {
+  background-color: #fff9e6;
+  mix-blend-mode: lighten;
 }
 
 footer {
@@ -55,7 +79,7 @@ h3 {
 }
 
 .colorAmarillo {
-  color: yellow;
+  color: #e5bb50;
 }
 
 #detalleProducto {

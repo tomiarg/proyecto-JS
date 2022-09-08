@@ -23,12 +23,12 @@ window.onscroll = (() => {
 });
 
 //acá se crean las cards.
-//función para tomar data de MockAPI
 function funcionApi(){
   fetch('https://6318e8d4f6b281877c79b8b6.mockapi.io/cortinasApi/productos')
   .then((response) => response.json())
   .then((json) => cargarProductos(json))
   .catch((error)=> console.error("There is something wrong, check: ", error))
+
 }
 funcionApi()
 function cargarProductos(json){
@@ -70,13 +70,13 @@ function cargarProductos(json){
       i = 0
       prodCanvas (i)
   })
-  const btnProdb = document.querySelector(".BtnB")
+    const btnProdb = document.querySelector(".BtnB")
     btnProdb.addEventListener("click", (e)=>{
       e.preventDefault()
       i = 1
       prodCanvas (i)
-  })
-  const btnProdc = document.querySelector(".BtnC")
+    })
+    const btnProdc = document.querySelector(".BtnC")
     btnProdc.addEventListener("click", (e)=>{
       e.preventDefault()
       i = 2
@@ -162,6 +162,8 @@ function detallePagg(){
 //sweet alert.
 function sa (){
   Swal.fire('cotización realizada con éxito!')
+  carritoLleno.className = "cocheLleno"
+
 } 
 
 
@@ -216,7 +218,7 @@ function detalleCompra(){
    enviarCantidad.addEventListener("click", (e) =>{
     e.preventDefault()
     sa ()
-    const sumarCompras = document.querySelector("#sumarCompras")
+    const sumarCompras = document.querySelector("#carritoCanvass")
     let telaSelect = document.querySelector("select.select").value
     let mtLargo = document.querySelector("input.largo").value
     let mtancho = document.querySelector("input.ancho").value
@@ -224,15 +226,15 @@ function detalleCompra(){
     let mtsCuadrados = mtancho * mtLargo
     if(telaSelect != "..." &&  mtLargo != "" && mtancho!=""){
       if(telaSelect == `${PRODUCTOS[0].cloth}`){
-        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 100px></span></h3>`
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 50px></span></p>`
         inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
         CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))  
       } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
-        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 100px></span></h3>`
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 50px></span><p>`
         inputTotal = mtsCuadrados * PRODUCTOS[1].price
         CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
       }else{
-        sumarCompras.innerHTML +=  `<h3> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 100px></span></h3>`
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 50px></span></p>`
         inputTotal = mtsCuadrados * PRODUCTOS[2].price
         CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
       }
