@@ -47,3 +47,4 @@ function recuperarLs(){
         console.table(prodLs)
     }
 }
+

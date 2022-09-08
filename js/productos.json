@@ -1,0 +1,26 @@
+[
+    {
+        "order" : "A",
+        "tela": "BLACKOUT",
+        "compotition": "Patrón: Plane weave x peso: 5,50 +/- 5%(gr/m2)",
+        "image" : "./img/blackout.jpg",
+        "price": 20
+         
+    },
+    {
+        "order" : "B",
+        "tela": "SUNSCREEN 5%",
+        "compotition": "Patrón: Tatting",
+        "image" : "./img/sunscreen.jpg",
+        "price": 27
+         
+    },
+    {
+        "order" : "C",
+        "tela": "BANDAS VERTICALES",
+        "compotition": "Blackout & Sunscreen 5%",
+        "image" : "./img/bandaVertical.jpg",
+        "price": 40
+
+    }
+]

@@ -23,23 +23,31 @@ window.onscroll = (() => {
 });
 
 //acá se crean las cards.
-function cargarProductos(){
-  for(let u=0; u < PRODUCTOS.length; u ++){
+//función para tomar data de MockAPI
+function funcionApi(){
+  fetch('https://6318e8d4f6b281877c79b8b6.mockapi.io/cortinasApi/productos')
+  .then((response) => response.json())
+  .then((json) => cargarProductos(json))
+  .catch((error)=> console.error("There is something wrong, check: ", error))
+}
+funcionApi()
+function cargarProductos(json){
+  for(let u=0; u < json.length; u ++){
       
     subirProductos.innerHTML +=   `
     <div class="card" style="width: 18rem;">
-    <img src="${PRODUCTOS[u].image}" class="card-img-top" alt="...">
+    <img src="${json[u].image}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">${PRODUCTOS[u].cloth}</h5>
+      <h5 class="card-title">${json[u].cloth}</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">${PRODUCTOS[u].compotition}</li>
-      <li class="list-group-item">$ ${PRODUCTOS[u].price} por m2</li>
+      <li class="list-group-item">${json[u].compotition}</li>
+      <li class="list-group-item">$ ${json[u].price} por m2</li>
       <li class="list-group-item">COLORES</li>
       <li class="list-group-item">Blanco - Gris - Negro</li>
     </ul>
     <div class="card-body">
-     <button class="btn btn-primary Btn${PRODUCTOS[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+     <button class="btn btn-primary Btn${json[u].order}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
       detalle de producto
     </button><div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" style="
     width: 100%;
@@ -56,7 +64,25 @@ function cargarProductos(){
     </div>
   </div></div> `    
     
-  };
+  };const btnProda = document.querySelector(".BtnA")
+  btnProda.addEventListener("click", (e)=>{  
+   e.preventDefault()
+      i = 0
+      prodCanvas (i)
+  })
+  const btnProdb = document.querySelector(".BtnB")
+    btnProdb.addEventListener("click", (e)=>{
+      e.preventDefault()
+      i = 1
+      prodCanvas (i)
+  })
+  const btnProdc = document.querySelector(".BtnC")
+    btnProdc.addEventListener("click", (e)=>{
+      e.preventDefault()
+      i = 2
+      prodCanvas (i)
+  })
+  
 }
 
 
@@ -74,7 +100,7 @@ function elegirTela(){
   
 }
 
- cargarProductos()
+ //cargarProductos()
 
 // esta función hace que escuche la cantidad que quiere comprar y crea 1 input por C/cortina
  function nvoCodigo(){  
@@ -142,26 +168,6 @@ function sa (){
 
 
 //funciones para ver en Canvass el detalle del prod que se clickee. 
-const btnProda = document.querySelector(".BtnA")
-
-btnProda.addEventListener("click", (e)=>{
-  
-  e.preventDefault()
-    i = 0
-    prodCanvas (i)
-  })
-  const btnProdb = document.querySelector(".BtnB")
-  btnProdb.addEventListener("click", (e)=>{
-    e.preventDefault()
-    i = 1
-    prodCanvas (i)
-  })
-  const btnProdc = document.querySelector(".BtnC")
-  btnProdc.addEventListener("click", (e)=>{
-    e.preventDefault()
-    i = 2
-    prodCanvas (i)
-  })
 
 
 
