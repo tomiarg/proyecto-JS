@@ -38,7 +38,7 @@ function cargarProductos(json){
     <div class="card" style="width: 18rem;">
     <img src="${json[u].image}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">${json[u].cloth}</h5>
+      <h5 class="card-title">${json[u].tela}</h5>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${json[u].compotition}</li>
@@ -100,8 +100,6 @@ function elegirTela(){
   
 }
 
- //cargarProductos()
-
 // esta función hace que escuche la cantidad que quiere comprar y crea 1 input por C/cortina
  function nvoCodigo(){  
   const enviarCantidad = document.querySelector(".enviarCantidad")
@@ -122,7 +120,7 @@ btnCotizar.addEventListener("click" , function addSelect(){
   let add = document.querySelector("#agregarInputs")
   btnCotizar.setAttribute('disabled', '')
   add.innerHTML = add.innerHTML + `<div> <select name="select" class="select">
-  <option class = "telaNo" value="value0" selected>...</option>
+  <option class = "telaNo" selected>...</option>
   <option class = "telaBlackout">${PRODUCTOS[0].cloth}</option>
   <option class = "telaSunscreen">${PRODUCTOS[1].cloth}</option>
   <option class = "telaBanda">${PRODUCTOS[2].cloth}</option>
@@ -170,10 +168,6 @@ function sa (){
 
 
 //funciones para ver en Canvass el detalle del prod que se clickee. 
-
-
-
-
 function prodCanvas(i){  
   
   let canvasId = document.querySelector("#canvasId")
@@ -226,21 +220,23 @@ function detalleCompra(){
     let mtsCuadrados = mtancho * mtLargo
     if(telaSelect != "..." &&  mtLargo != "" && mtancho!=""){
       if(telaSelect == `${PRODUCTOS[0].cloth}`){
-        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[0].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[0].price}<span><img src="${PRODUCTOS[0].image}" width = 50px></span></p>`
         inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
-        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))  
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal.toFixed(2)))  
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[0].cloth} Total: $ ${inputTotal.toFixed(2)}<span><img src="${PRODUCTOS[0].image}" width = 50px></span></p>`
       } else if(telaSelect == `${PRODUCTOS[1].cloth}`){
-        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[1].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[1].price}<span><img src="${PRODUCTOS[1].image}" width = 50px></span><p>`
         inputTotal = mtsCuadrados * PRODUCTOS[1].price
-        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal.toFixed(2)))
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[1].cloth} Total: $ ${inputTotal.toFixed(2)}<span><img src="${PRODUCTOS[1].image}" width = 50px></span><p>`
+
       }else{
-        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[2].cloth} Total: $ ${mtsCuadrados * PRODUCTOS[2].price}<span><img src="${PRODUCTOS[2].image}" width = 50px></span></p>`
         inputTotal = mtsCuadrados * PRODUCTOS[2].price
-        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal))
+        CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal.toFixed(2)))
+        sumarCompras.innerHTML +=  `<p> tela:  ${PRODUCTOS[2].cloth} Total: $ ${inputTotal.toFixed(2)}<span><img src="${PRODUCTOS[2].image}" width = 50px></span></p>`
+
       }
       console.table(CARRITO)
       localStorage.setItem("carrito", JSON.stringify(CARRITO))
-      document.querySelector("select.select").value = "value0"
+      document.querySelector("select.select").value = "..."
       document.querySelector("input.largo").value = ""
       document.querySelector("input.ancho").value = ""
     }else{

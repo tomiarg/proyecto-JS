@@ -35,9 +35,9 @@ class Product{
 }
 
 function push(){
-PRODUCTOS.push(new Product("A", "BLACKOUT", "Patrón: Plane weave x peso: 5,50 +/- 5%(gr/m2)", "./img/blackout.jpg", 20))
-PRODUCTOS.push(new Product("B", "SUNSCREEN 5%","Patrón: Tatting", "./img/sunscreen.jpg",  27))
-PRODUCTOS.push(new Product("C", "BANDAS VERTICALES", "Blackout & Sunscreen 5%", "./img/bandaVertical.jpg", 40))
+PRODUCTOS.push(new Product("A", "BLACKOUT", "Patrón: Plane weave x peso: 5,50 +/- 5%(gr/m2)", "./img/blackout.jpg", 0.20))
+PRODUCTOS.push(new Product("B", "SUNSCREEN 5%","Patrón: Tatting", "./img/sunscreen.jpg",  0.27))
+PRODUCTOS.push(new Product("C", "BANDAS VERTICALES", "Blackout & Sunscreen 5%", "./img/bandaVertical.jpg", 0.40))
 localStorage.setItem("productos", JSON.stringify(PRODUCTOS))
 }
 push()
