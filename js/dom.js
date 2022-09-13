@@ -161,6 +161,7 @@ function detallePagg(){
 function sa (){
   Swal.fire('cotización realizada con éxito!')
   carritoLleno.className = "cocheLleno"
+  carritoVacio.className = "coche"
 
 } 
 

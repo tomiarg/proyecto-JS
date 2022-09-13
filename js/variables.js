@@ -18,6 +18,7 @@ const imgSubir = document.querySelector(".card-img-top")
 const btnCotizar = document.querySelector("#cotizar")
 const cargarCortinas = document.querySelector("#cargarCortinas")
 const carritoLleno = document.querySelector(".coche")
+const carritoVacio = document.querySelector(".cocheLleno")
 
 
 

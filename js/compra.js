@@ -1,4 +1,4 @@
-
+const botonComprar = document.querySelector("#botonComprar")
 
 function recuperarLs(){
     if(localStorage.productos){
@@ -29,4 +29,20 @@ function recuperarLs(){
     }mostrarCompra()
 }
 
+function terminaste(){
+    recuperarLs()
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'compra procesada! tus cortinas llegarán en 7 días',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
+}
+
+botonComprar.addEventListener("click", () =>{ localStorage.setItem("carrito", JSON.stringify("")), terminaste()})
+
 recuperarLs()
+
+

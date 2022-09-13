@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,800;1,400;1,600;1,700&display=swap');
+body{
+    font-family: 'Mulish', sans-serif;
+}
 nav{
     background-image: url(../img/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Mulish', sans-serif;
 }
+
 .coche{
     display: none;
 }
@@ -25,23 +31,16 @@ main{
     background-size: cover;
     background-repeat: no-repeat;
 }
-h1{
+#titulo{
     color: white;
     width: 400px;    
     padding: 12px;
-    font-size: 82px;
-    font-weight: bolder; 
-    mix-blend-mode: normal;
+    font-weight: bolder;
     margin:0 auto;
     display: flex;
-    justify-content: center;
-}
-h1{
-    transition: all 4s;
-}
-h1:hover{
-    background-color: #fff9e6;
-    mix-blend-mode: lighten;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Mulish', sans-serif;
 }
 
 
@@ -52,6 +51,7 @@ footer{
     bottom: 0;
     width: 100%;
     color: white;
+    margin-top: 100px;
 
   
 }
@@ -67,12 +67,16 @@ h3{
 .colorAmarillo{
     color: #e5bb50;
 }
-
+.h2{
+    margin-top: 100px!important;
+    display: flex;
+    justify-content: center;
+}
 #detalleProducto{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 40px;
 
 }
 .compra{
@@ -81,10 +85,33 @@ h3{
     justify-content: center;
 
 }
+
 #sumarCompras{
     background-color: #96d9f8;
     display: flex;
     flex-direction: column;
     align-items: center;
 } 
-    
+
+.datosPersonales, .cortinasElegidas{
+    width: 200px;
+    height: 50vh;
+}
+.cortinasElegidas{
+    width: 400px;
+}
+
+#botonComprar, #montoTotal{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 50px
+}
+
+@media screen and (max-width: 768px) {
+    #productos{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
