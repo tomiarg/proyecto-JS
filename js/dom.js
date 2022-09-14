@@ -245,7 +245,9 @@ function detalleCompra(){
         icon: 'error',
         title: 'Oops...',
         text: 'recuerda ingresar todos los datos',
-      })
+      });
+      carritoLleno.className = "coche"
+      carritoVacio.className = "cocheLleno"
     }
   });
 }

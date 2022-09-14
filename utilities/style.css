@@ -3,8 +3,13 @@ body {
   font-family: 'Mulish', sans-serif;
 }
 
+a.clickComprar {
+  text-decoration: none;
+  color: white;
+}
+
 nav {
-  background-image: url(../img/background.jpg);
+  background-image: url(../img/ventanaMediana.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'Mulish', sans-serif;
@@ -31,7 +36,7 @@ body {
 main {
   padding-top: 100px !important;
   height: 100vh;
-  background-image: url(../img/background.jpg);
+  background-image: url(../img/ventanaMediana.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -65,8 +70,22 @@ footer {
   margin-top: 100px;
 }
 
+.card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 75px;
+}
+
 h3 {
   color: white;
+}
+
+li.list-group-item {
+  height: 60px;
 }
 
 #productos {
