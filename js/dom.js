@@ -100,21 +100,6 @@ function elegirTela(){
   
 }
 
-// esta función hace que escuche la cantidad que quiere comprar y crea 1 input por C/cortina
- function nvoCodigo(){  
-  const enviarCantidad = document.querySelector(".enviarCantidad")
-  enviarCantidad.addEventListener("click", (e) =>{
-    e.preventDefault()
-    const cortinasCantidad = parseInt(enviarCantidad.value)
-    if(cortinasCantidad!= NaN || cortinasCantidad != Null){
-      for(let j = 0; j < cortinasCantidad; j++){
-        elegirTela()    
-        console.log(cortinasCantidad)
-      }
-    }    
-  });
-}
-
 //este Evento escucha el click sobre "cotizar" y crea un input para poner cantidad de cortinas
 btnCotizar.addEventListener("click" , function addSelect(){
   let add = document.querySelector("#agregarInputs")
@@ -124,38 +109,12 @@ btnCotizar.addEventListener("click" , function addSelect(){
   <option class = "telaBlackout">${PRODUCTOS[0].cloth}</option>
   <option class = "telaSunscreen">${PRODUCTOS[1].cloth}</option>
   <option class = "telaBanda">${PRODUCTOS[2].cloth}</option>
-  </select><input class = largo type ="number" placeholder = "ingrese el ancho"></a>
-  <input class = ancho type ="number" placeholder = "ingrese el largo"></a>
+  </select><input class = largo type ="number" placeholder = "ingrese el ancho" min ="1"></a>
+  <input class = ancho type ="number" placeholder = "ingrese el largo" min="1"></a>
   <input class="enviarCantidad" type="submit" value= "agregar al carrito"></a></div>
   `
   detalleCompra()
 })
-
-
-
-//función para completar la otra url
-//pensar cómo hacer para que al tocar un click, pueda usar la misma función y mostrar diferentes cosas
-
-
-function detallePagg(){
-  const clickDetalleA = document.querySelector(".clickA")
-  const clickDetalleB = document.querySelector(".clickB")
-  const clickDetalleC = document.querySelector(".clickC")
-  clickDetalleA.addEventListener("click", function clickeAr(){   
-    clickeA++
-    sessionStorage.setItem("detalle", JSON.stringify([clickeA, clickeB, clickeC]))
-  })
-  clickDetalleB.addEventListener("click", function clickeBr(){  
-    
-    clickeB++
-    sessionStorage.setItem("detalle", JSON.stringify([clickeA, clickeB, clickeC]))
-  })
-  clickDetalleC.addEventListener("click", function clickeCr(){     
-    clickeC++
-    sessionStorage.setItem("detalle", JSON.stringify([clickeA, clickeB, clickeC]))
-  })
-}
-
 
 //sweet alert.
 function sa (){
@@ -179,18 +138,19 @@ function prodCanvas(i){
     <img src="${PRODUCTOS[i].image}" class="img-fluid rounded-start" alt="...">
   </div>
  <div class="col-md-8">
-   <div class="card-body">
+   <div class="card-body" style="
+   display: flex;
+   flex-direction: column;
+   margin-top: 35px;
+">
       <h5 class="card-title">${PRODUCTOS[i].cloth}</h5>
       <p class="card-text">${PRODUCTOS[i].compotition}.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <p class="card-text"><small class="text-muted">${PRODUCTOS[i].detail}</small></p>
      </div>
    </div>
    </div>
    </div>
-     </div>
-    <div class="dropdown mt-3">
-     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-   </div>`
+     </div>`
    
 }
 
@@ -213,13 +173,13 @@ function detalleCompra(){
    enviarCantidad.addEventListener("click", (e) =>{
     e.preventDefault()
     sa ()
-    const sumarCompras = document.querySelector("#carritoCanvass")
+    
     let telaSelect = document.querySelector("select.select").value
     let mtLargo = document.querySelector("input.largo").value
     let mtancho = document.querySelector("input.ancho").value
     let inputTotal = 0
     let mtsCuadrados = mtancho * mtLargo
-    if(telaSelect != "..." &&  mtLargo != "" && mtancho!=""){
+    if(telaSelect != "..." &&  mtLargo != "" && mtLargo >= 1 &&  mtancho!="" && mtancho >= 1){
       if(telaSelect == `${PRODUCTOS[0].cloth}`){
         inputTotal = inputTotal +(mtsCuadrados * PRODUCTOS[0].price)
         CARRITO.push(new CarritoClass(telaSelect, mtLargo, mtancho, mtsCuadrados, inputTotal.toFixed(2)))  
@@ -262,6 +222,11 @@ function recuperarLscarrito(){
       console.table(CARRITOLS)     
   } 
 }
+
+borrarCarrito.addEventListener("click", () =>{
+  sumarCompras.innerHTML = ""
+  localStorage.setItem("carrito", JSON.stringify(""))
+})
 
 function sumar(){
   const CARRITOLS = JSON.parse(localStorage.getItem("carrito"))

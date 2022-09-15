@@ -24,6 +24,7 @@ function recuperarLs(){
                 }
             }else{
                 productosFinal.innerHTML = `<div> no hay nada </div>`
+                montoTotal.innerHTML = ""
             }
         }
     }mostrarCompra()
