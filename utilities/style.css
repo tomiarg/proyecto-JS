@@ -172,10 +172,20 @@ li.list-group-item {
 .datosPersonales, .cortinasElegidas {
   width: 200px;
   height: 50vh;
+  background-color: lightblue;
 }
 
 .cortinasElegidas {
   width: 400px;
+}
+
+.carritoEmpty {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #botonComprar, #montoTotal {

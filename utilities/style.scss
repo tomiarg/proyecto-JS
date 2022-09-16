@@ -122,9 +122,14 @@ li.list-group-item{
 .datosPersonales, .cortinasElegidas{
     width: 200px;
     height: 50vh;
+    background-color: lightblue;
 }
 .cortinasElegidas{
     width: 400px;
+}
+.carritoEmpty{
+    display: flex;
+    justify-content: center;
 }
 
 #botonComprar, #montoTotal{

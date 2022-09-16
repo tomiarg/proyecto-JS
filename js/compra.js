@@ -23,7 +23,7 @@ function recuperarLs(){
                  </div>`
                 }
             }else{
-                productosFinal.innerHTML = `<div> no hay nada </div>`
+                productosFinal.innerHTML = `<div class="carritoEmpty"> carrito vacío!</div>`
                 montoTotal.innerHTML = ""
             }
         }
