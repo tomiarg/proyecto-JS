@@ -35,6 +35,20 @@ main{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.explicar{
+    padding-top:20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'Mulish', sans-serif;
+    width: 800px;
+}
 #titulo{
     color: white;
     width: 400px;    
@@ -120,7 +134,7 @@ li.list-group-item{
     margin-top: 50px
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 667px) {
     body{
         width: 100vh;
     }
@@ -128,6 +142,9 @@ li.list-group-item{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .explicar{
+        display: none;
     }
 
 }
